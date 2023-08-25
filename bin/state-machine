@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Ananiaslitz\StateMachine\StateMachineLoader;
+
+$loader = new StateMachineLoader();
+try {
+    $data = $loader->load();
+} catch (Exception $e) {
+    print_r($e->getMessage());
+    exit();
+}
+
+$dot = "digraph finite_state_machine {\n";
+$dot .= "rankdir=LR;\n";
+$dot .= "size=\"8,5\"\n";
+$dot .= "node [shape = circle];\n";
+
+foreach ($data['transitions'] as $transition) {
+    $dot .= "{$transition['from']} -> {$transition['to']} [ label = \"{$transition['name']}\" ];\n";
+}
+
+$dot .= "}\n";
+
+file_put_contents('state_machine.dot', $dot);
+
+$format = $argv[1] ?? 'png';
+
+$outputFile = "state_machine.{$format}";
+shell_exec("dot -T{$format} state_machine.dot -o {$outputFile}");
+
+echo "Diagrama gerado como {$outputFile} na raiz do projeto.\n";

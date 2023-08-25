@@ -1,0 +1,20 @@
+{
+    "name": "ananiaslitz/state-machine",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ananiaslitz\\StateMachine\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Diego Ananias",
+            "email": "diegohsananias@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/yaml": "^6.3"
+    },
+    "bin": ["bin/graph"]
+}

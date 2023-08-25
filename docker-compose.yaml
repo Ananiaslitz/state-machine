@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  swoole-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    command: /bin/bash
+    stdin_open: true
+    tty: true
