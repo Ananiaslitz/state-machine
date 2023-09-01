@@ -2,6 +2,7 @@
 
 namespace Ananiaslitz\StateMachine\Rules;
 
-interface Rule {
+interface Rule
+{
     public function evaluate(array $context): bool;
 }

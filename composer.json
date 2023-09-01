@@ -4,7 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ananiaslitz\\StateMachine\\": "src/"
+            "Ananiaslitz\\StateMachine\\": "src/",
+            "Ananiaslitz\\Examples\\": "examples/"
         }
     },
     "authors": [

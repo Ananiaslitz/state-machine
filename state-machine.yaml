@@ -1,0 +1,26 @@
+workflows:
+  first_workflow:
+    initialState: "idle1"
+    states:
+      - name: "idle1"
+      - name: "running1"
+      - name: "stopped1"
+    transitions:
+      - name: "start1"
+        from: "idle1"
+        to: "running1"
+        rules:
+          - "Ananiaslitz\StateMachine\Rules\IsUrgentRule::class"
+
+  second_workflow:
+    initialState: "idle2"
+    states:
+      - name: "idle2"
+      - name: "running2"
+      - name: "stopped2"
+    transitions:
+      - name: "start2"
+        from: "idle2"
+        to: "running2"
+        rules:
+          - "Ananiaslitz\StateMachine\Rules\IsUrgentRule::class"

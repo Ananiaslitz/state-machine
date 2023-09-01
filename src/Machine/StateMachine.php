@@ -1,20 +1,27 @@
 <?php
 
-namespace Ananiaslitz\StateMachine;
+namespace Ananiaslitz\StateMachine\Machine;
 
-class StateMachine {
+use Ananiaslitz\StateMachine\Machine\State;
+use Ananiaslitz\StateMachine\Transition\Transition;
+
+class StateMachine
+{
     private $currentState;
     private $transitions = [];
 
-    public function __construct(State $initialState) {
+    public function __construct(State $initialState)
+    {
         $this->currentState = $initialState;
     }
 
-    public function addTransition(Transition $transition) {
+    public function addTransition(Transition $transition)
+    {
         $this->transitions[] = $transition;
     }
 
-    public function executeTransition(string $transitionName, array $context) {
+    public function executeTransition(string $transitionName, array $context)
+    {
         foreach ($this->transitions as $transition) {
             if ($transition->getName() === $transitionName && $transition->canExecute($this->currentState, $context)) {
                 $this->currentState = $transition->getToState();
@@ -24,7 +31,8 @@ class StateMachine {
         return false;
     }
 
-    public function getCurrentState(): State {
+    public function getCurrentState(): State
+    {
         return $this->currentState;
     }
 }

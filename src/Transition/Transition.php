@@ -1,32 +1,49 @@
 <?php
 
-namespace Ananiaslitz\StateMachine;
+namespace Ananiaslitz\StateMachine\Transition;
+use Ananiaslitz\StateMachine\Machine\State;
 
-use Ananiaslitz\StateMachine\Rules\Rule;
+class Transition
+{
+    private string $name;
+    private State $fromState;
+    private State $toState;
+    private array $rules;
 
-class Transition {
-    private $name;
-    private $fromState;
-    private $toState;
-    private $rule;
-
-    public function __construct(string $name, State $fromState, State $toState, Rule $rule = null) {
+    public function __construct(
+        string $name,
+        State  $fromState,
+        State  $toState,
+        array $rules = []
+    ) {
         $this->name = $name;
         $this->fromState = $fromState;
         $this->toState = $toState;
-        $this->rule = $rule;
+        $this->rules = $rules;
     }
 
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getToState(): State {
+    public function getToState(): State
+    {
         return $this->toState;
     }
 
-    public function canExecute(State $currentState, array $context): bool {
-        return $currentState->getName() === $this->fromState->getName() &&
-            (is_null($this->rule) || $this->rule->evaluate($context));
+    public function canExecute(State $currentState, array $context): bool
+    {
+        if ($currentState->getName() !== $this->fromState->getName()) {
+            return false;
+        }
+
+        foreach ($this->rules as $rule) {
+            if (!$rule->evaluate($context)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
