@@ -14,18 +14,19 @@ composer require ananiaslitz/state-machine
 Exemplo de state-machine.yaml:
 
 ```yaml 
-states:
-  - start
-  - middle
-  - end
-
-transitions:
-  - name: begin
-    from: start
-    to: middle
-  - name: finish
-    from: middle
-    to: end
+workflows:
+  first_workflow:
+    initialState: "idle1"
+    states:
+      - name: "idle1"
+      - name: "running1"
+      - name: "stopped1"
+    transitions:
+      - name: "start1"
+        from: "idle1"
+        to: "running1"
+        rules:
+          - "Ananiaslitz\\StateMachine\\Rules\\IsUrgentRule::class"
 ```
 
 #### 2 - Utilize a biblioteca em seu código:
