@@ -10,7 +10,7 @@ workflows:
         from: "idle1"
         to: "running1"
         rules:
-          - "Ananiaslitz\StateMachine\Rules\IsUrgentRule::class"
+          - "Ananiaslitz\\StateMachine\\Rules\\IsUrgentRule::class"
 
   second_workflow:
     initialState: "idle2"
@@ -23,4 +23,4 @@ workflows:
         from: "idle2"
         to: "running2"
         rules:
-          - "Ananiaslitz\StateMachine\Rules\IsUrgentRule::class"
+          - "Ananiaslitz\\StateMachine\\Rules\\IsUrgentRule::class"
