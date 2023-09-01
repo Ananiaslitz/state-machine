@@ -34,7 +34,7 @@ transitions:
 require 'vendor/autoload.php';
 
 $loader = new StateMachineLoader();
-$data = $loader->load();
+$data = $loader->createStateMachines();
 ```
 
 ## Geração de Diagrama da Máquina de Estados
@@ -53,14 +53,14 @@ sudo apt-get install graphviz
 Para gerar o diagrama, execute:
 
 ```bash
-php  [formato]
+php /vendor/bin/state-machine [formato]
 ```
 #### Onde [formato] é opcional e pode ser png, svg, pdf, etc. Se nenhum formato for fornecido, será gerado um PNG por padrão.
 
 Exemplo:
 
 ```bash
-php [formato]
+php /vendor/bin/state-machine [formato]
 ```
 
 Após a execução, um arquivo de diagrama (por exemplo, state_machine.png) será gerado na raiz do seu projeto.

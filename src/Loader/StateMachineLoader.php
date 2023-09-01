@@ -25,6 +25,9 @@ class StateMachineLoader
         return Yaml::parseFile($yamlPath);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function createStateMachines(string $yamlPath = null): array {
         $config = $this->load($yamlPath);
 
